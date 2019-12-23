@@ -33,7 +33,7 @@ namespace DatingApp.API.Controllers
         public async Task<IActionResult> Register(UserforRegister userForRegister)
         {
             userForRegister.Username = userForRegister.Username.ToLower();
-            if(await _repo.UserExist(userForRegister.Username))
+            if (await _repo.UserExist(userForRegister.Username))
             {
                 return BadRequest("Username already exists!");
             }
@@ -51,8 +51,9 @@ namespace DatingApp.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserforLogin userForLogin)
         {
+            throw new Exception("Computed really say no!");
             var userFromRepo = await _repo.Login(userForLogin.Username.ToLower(), userForLogin.Password);
-            if(userFromRepo == null)
+            if (userFromRepo == null)
             {
                 return Unauthorized();
             }
@@ -78,9 +79,11 @@ namespace DatingApp.API.Controllers
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return Ok(new {
+            return Ok(new
+            {
                 token = tokenHandler.WriteToken(token)
             });
+
         }
     }
 }
