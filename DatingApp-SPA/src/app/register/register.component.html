@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+  <h2 class="text-center text-primary">Sign Up</h2>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Username" formControlName="username" />
+  </div>
+  <div class="form-group">
+      <select class="form-control" >
+          <option *ngFor="let item of valueSources" [value]="item.id">{{ item.name }}</option>
+      </select>
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control" placeholder="Password" formControlName="password" />
+  </div>
+  <div class="form-group text-center">
+    <button class="btn btn-success" type="submit" (click)="register()">Register</button>
+    <button class="btn btn-default" type="button" (click)="cancelRegister()">Cancel</button>
+  </div>
+</form>

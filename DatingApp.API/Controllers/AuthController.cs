@@ -51,7 +51,6 @@ namespace DatingApp.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserforLogin userForLogin)
         {
-            throw new Exception("Computed really say no!");
             var userFromRepo = await _repo.Login(userForLogin.Username.ToLower(), userForLogin.Password);
             if (userFromRepo == null)
             {
