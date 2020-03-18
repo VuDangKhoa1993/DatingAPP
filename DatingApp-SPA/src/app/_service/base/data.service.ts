@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -6,18 +7,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  private rootUrl = 'http://localhost:5000/api/';
+  private rootUrl = environment.apiUrl;
   protected url = '';
   constructor(protected httpClient: HttpClient, urlLink: string) {
     this.url = this.rootUrl + urlLink;
   }
 
-  getAll(): Observable<any> {
-    return this.httpClient.get<any>(this.url);
+  getAll<T>(): Observable<T> {
+    return this.httpClient.get<T>(this.url);
   }
 
-  getById(id): Observable<any> {
-    return this.httpClient.get<any>(this.url + `/${id}`);
+  getById<T>(id): Observable<T> {
+    return this.httpClient.get<T>(this.url + `/${id}`);
   }
 
   create(params): Observable<any> {

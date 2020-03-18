@@ -5,7 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20191228143833_extendedUserClass.cs" />
+    <Compile Remove="Migrations\20191228143833_extendedUserClass.Designer.cs" />
+    <Compile Remove="Migrations\20191228150917_extendedUserClass.cs" />
+    <Compile Remove="Migrations\20191228150917_extendedUserClass.Designer.cs" />
+    <Compile Remove="Migrations\20200104093637_updatedUserClass.cs" />
+    <Compile Remove="Migrations\20200104093637_updatedUserClass.Designer.cs" />
+    <Compile Remove="Migrations\20200104095047_extendedUserClass1.cs" />
+    <Compile Remove="Migrations\20200104095047_extendedUserClass1.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="CloudinaryDotNet" Version="1.10.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">

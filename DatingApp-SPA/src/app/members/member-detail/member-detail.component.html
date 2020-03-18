@@ -1,0 +1,57 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card">
+                <img [src]="userDetail.photoUrl" [alt]="userDetail.knownAs" class="card-img-top img-thumbnail">
+                <div class="card-body">
+                    <div>
+                        <strong>Location:</strong>
+                        <p>{{ userDetail?.city }}, {{ userDetail?.country }}</p>
+                    </div>
+                    <div>
+                        <strong>Age: </strong>
+                        <p>{{ userDetail.age }} </p>
+                    </div>
+                    <div>
+                        <strong>Last Active:</strong>
+                        <p>{{ userDetail.lastActive | date: 'dd/MM/yyyy'  }} </p>
+                    </div>
+                    <div>
+                        <strong>Member since:</strong>
+                        <p>{{ userDetail.created | date: 'dd/MM/yyyy' }} </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="btn-group d-flex">
+                            <button class="btn btn-success w-100">Like</button>
+                            <button class="btn btn-primary w-100">Message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="tab-panel">
+                <tabset>
+                    <tab heading="About {{ userDetail.knownAs }}">
+                        <h4>Description</h4>
+                        <p>{{ userDetail.introduction }}</p>
+                        <h4>Looking for</h4>
+                        <p>{{ userDetail.lookingFor }}</p>
+                    </tab>
+                    <tab heading="Interests">
+                        <h4>Interests</h4>
+                        <p>{{ userDetail.interests }}</p>
+                    </tab>
+                    <tab heading="Photo">
+                        <p>Photo will go here</p>
+                    </tab>
+                    <tab heading="Message">
+                        <p>Message will go here</p>
+                    </tab>
+                </tabset>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <p>{{ userDetail | json }}</p> -->

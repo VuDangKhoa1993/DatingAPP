@@ -2,6 +2,8 @@ import { AlertService } from './../_service/alert/alert.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../_service/auth/auth.service';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-nav',
@@ -14,7 +16,9 @@ export class NavComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -40,6 +44,15 @@ export class NavComponent implements OnInit {
       }
     }, error => {
       this.alertService.error(error);
+    }, () => {
+      this.activatedRoute.queryParams
+      .subscribe(data => {
+        if (data.returnUrl) {
+          this.router.navigateByUrl(data.returnUrl);
+        } else {
+          this.router.navigate(['/member']);
+        }
+      });
     });
   }
 
@@ -49,7 +62,7 @@ export class NavComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('userInfo');
-    location.reload();
-    this.alertService.message('logged out');
+    this.router.navigate(['/home']);
+    this.alertService.warning('logged out');
   }
 }

@@ -1,69 +1,53 @@
-<nav
-  class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top justify-content-between"
->
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <a class="navbar-brand" href="#">Dating App</a>
-    <!-- Links -->
-    <ul class="navbar-nav" *ngIf="isLoggedIn()">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Matches</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Lists</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Messages</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-      <!-- Dropdown -->
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbardrop"
-          data-toggle="dropdown"
-        >
-          Dropdown link
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Link 1</a>
-          <a class="dropdown-item" href="#">Link 2</a>
-          <a class="dropdown-item" href="#">Link 3</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div class="btn-group"  *ngIf="isLoggedIn(); else loginForm" dropdown>
-    <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
-            aria-controls="dropdown-basic">
-            Welcome {{ authService.decodedToken?.unique_name | titlecase }}
-            <span class="caret"></span>
-    </button>
-    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
-        role="menu" aria-labelledby="button-basic">
-      <li role="menuitem"><a class="dropdown-item" > <i class="fa fa-user"></i> Edit Profile</a></li>
-      <li role="menuitem"><a class="dropdown-item" (click)="logout()" ><i class="fa fa-sign-out"></i>Logout</a></li>
-    </ul>
-  </div>
-  <ng-template #loginForm>
-    <form class="form-inline" [formGroup]="form">
-      <input
-        class="form-control mr-sm-2"
-        type="text"
-        placeholder="Username"
-        formControlName="username"
-      />
-      <input
-        class="form-control mr-sm-2"
-        type="password"
-        placeholder="Password"
-        formControlName="password"
-      />
-      <button class="btn btn-success" type="submit" (click)="login()">
-        Login
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top justify-content-between">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <a class="navbar-brand" [routerLink]="['/home']">Dating App</a>
+      <!-- Links -->
+      <ul class="navbar-nav" *ngIf="isLoggedIn()">
+        <li class="nav-item" [routerLinkActive]="'active'">
+          <a class="nav-link" [routerLink]="['/member']">Matches</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="'active'">
+          <a class="nav-link" [routerLink]="['/list']">Lists</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="'active'">
+          <a class="nav-link" [routerLink]="['/message']">Messages</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            Dropdown link
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Link 1</a>
+            <a class="dropdown-item" href="#">Link 2</a>
+            <a class="dropdown-item" href="#">Link 3</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="btn-group" *ngIf="isLoggedIn(); else loginForm" dropdown>
+      <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+        aria-controls="dropdown-basic">
+        Welcome {{ authService.decodedToken?.unique_name | titlecase }}
+        <span class="caret"></span>
       </button>
-    </form>
-  </ng-template>
+      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+        <li role="menuitem" [routerLink]="['/member/edit']" routerLinkActive="router-link-active" ><a class="dropdown-item"> <i class="fa fa-user"></i> Edit Profile</a></li>
+        <li role="menuitem"><a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i>Logout</a></li>
+      </ul>
+    </div>
+    <ng-template #loginForm>
+      <form class="form-inline" [formGroup]="form">
+        <input class="form-control mr-sm-2" type="text" placeholder="Username" formControlName="username" />
+        <input class="form-control mr-sm-2" type="password" placeholder="Password" formControlName="password" />
+        <button class="btn btn-success" type="submit" (click)="login()">
+          Login
+        </button>
+      </form>
+    </ng-template>
+  </div>
 </nav>
